@@ -53,8 +53,11 @@ export class Question extends AggregateRoot<QuestionProps> {
     return dayjs().diff(this.createdAt, 'days') <= 3
   }
 
-  get excerpt() {
-    return this.props.content.substring(0, 120).trim().concat('...')
+  excerpt(characters?: number) {
+    return this.props.content
+      .substring(0, characters ?? 120)
+      .trim()
+      .concat('...')
   }
 
   private touch() {
